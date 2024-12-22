@@ -1,0 +1,11 @@
+package com.Mini_Projet_Java.Mini_Projet_Java.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.Mini_Projet_Java.Mini_Projet_Java.Model.Semestre;
+
+@Repository
+public interface SemestreRepository extends JpaRepository<Semestre, Long> {
+    // Vous pouvez ajouter des méthodes de recherche personnalisées ici si nécessaire
+}
