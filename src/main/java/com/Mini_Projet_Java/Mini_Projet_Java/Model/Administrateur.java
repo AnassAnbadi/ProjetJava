@@ -7,17 +7,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Administarateur")
-public class Administarateur {
+@Table(name = "Administrateur")
+public class Administrateur {
 
-	    @Id
+
+
+
+		@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
-
-	    private String nom;
-
-	   
-	    private String prenom;
 
 	    private String nomUtilisateur;
 
@@ -25,12 +23,25 @@ public class Administarateur {
 
 	    private String image;
 
+	    
+	    public Administrateur(String nomUtilisateur, String motDePasse, String image) {
+			super();
+			this.nomUtilisateur = nomUtilisateur;
+			this.motDePasse = motDePasse;
+			this.image = image;
+		}
 	   
+        
+	    
+	    public Administrateur(String nomUtilisateur, String motDePasse) {
+			this.nomUtilisateur = nomUtilisateur;
+			this.motDePasse = motDePasse;
+		}
 
-	    public Administarateur(Long id,String nom, String prenom, String nomUtilisateur, String motDePasse, String image) {
+
+
+		public Administrateur(Long id, String nomUtilisateur, String motDePasse, String image) {
 	        this.id = id;
-	        this.nom = nom;
-	        this.prenom = prenom;
 	        this.nomUtilisateur = nomUtilisateur;
 	        this.motDePasse = motDePasse;
 	        this.image = image;
@@ -39,7 +50,7 @@ public class Administarateur {
 	    
 	    
 
-	    public Administarateur() {
+	    public Administrateur() {
 			// TODO Auto-generated constructor stub
 		}
 
@@ -57,28 +68,6 @@ public class Administarateur {
 		}
 
 
-
-		public String getNom() {
-			return nom;
-		}
-
-
-
-		public void setNom(String nom) {
-			this.nom = nom;
-		}
-
-
-
-		public String getPrenom() {
-			return prenom;
-		}
-
-
-
-		public void setPrenom(String prenom) {
-			this.prenom = prenom;
-		}
 
 
 
