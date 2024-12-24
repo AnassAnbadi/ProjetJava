@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Professeur;
 
 @Repository
-public interface ProfesseurRepository extends JpaRepository<Professeur, String> {
+public interface ProfesseurRepository extends JpaRepository<Professeur, Long> {
     // Vous pouvez ajouter des méthodes personnalisées ici si nécessaire, comme findByNomUtilisateur
-    Professeur findByNomUtilisateur(String nomUtilisateur);
+    Professeur findByUsername(String nomUtilisateur);
 }

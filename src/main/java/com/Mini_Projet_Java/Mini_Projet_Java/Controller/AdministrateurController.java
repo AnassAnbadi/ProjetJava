@@ -33,9 +33,9 @@ public class AdministrateurController {
 	public AdministrateurController(AdministrateurService adminService) {
 		this.AdminService = adminService;
 	}
-	@PostMapping("/login")
+	@PostMapping("login")
 	public ResponseEntity<Map<String, String>> login(@RequestBody Administrateur administrateur) {
-	    return AdminService.validateAdmin(administrateur.getNomUtilisateur(),administrateur.getMotDePasse());
+	    return AdminService.validateAdmin(administrateur);
 	}
 
 	@PostMapping(path="Add")

@@ -76,16 +76,17 @@ public class AdministrateurService  {
 	
 	
 	//login validation
-	    public ResponseEntity<Map<String, String>> validateAdmin(String nomUtilisateur,String motDePasse) {
-	        Optional<Administrateur> admin = AdminRepository.findByNomUtilisateur(nomUtilisateur);
+	    public ResponseEntity<Map<String, String>> validateAdmin(Administrateur Admin) {
+	        Optional<Administrateur> admin = AdminRepository.findByNomUtilisateur(Admin.getNomUtilisateur());
 
-	        if (admin.isPresent() && admin.get().getMotDePasse().equals(motDePasse)) {
+	        if (admin.isPresent() && admin.get().getMotDePasse().equals(Admin.getMotDePasse())) {
 	            // Réponse en cas de succès
-	            return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
-	                "message", "Login successful!",
-	                "username", admin.get().getNomUtilisateur(),
-	                "image", admin.get().getImage()
-	            ));
+	              return ResponseEntity.status(HttpStatus.CREATED).body(Map.of(
+	        		    "message", "Login successful!",
+	        		    "username", admin.get().getNomUtilisateur(),
+	        		    "image", admin.get().getImage() != null ? admin.get().getImage() : "default_image_url_or_placeholder"
+	        		));
+ 	 
 	        }
 
 	        // Réponse en cas d'échec

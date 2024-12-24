@@ -33,7 +33,7 @@ public class SemestreController {
     }
 
     // Ajouter ou mettre à jour un semestre
-    @PostMapping
+    @PostMapping("add")
     public ResponseEntity<Semestre> saveOrUpdateSemestre(@RequestBody Semestre semestre) {
         Semestre savedSemestre = semestreService.saveOrUpdateSemestre(semestre);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedSemestre);

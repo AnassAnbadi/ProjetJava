@@ -2,6 +2,8 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,9 +15,11 @@ public class Semestre {
     private String nom;
 
     @OneToMany(mappedBy = "semestre")
+    
     private List<Module> modules;
 
     @OneToMany(mappedBy = "semestre")
+    
     private List<Etudiant> etudiants;
 
 	public Semestre() {
@@ -33,6 +37,19 @@ public class Semestre {
 		this.nom = nom;
 		this.modules = modules;
 		this.etudiants = etudiants;
+	}
+
+	
+	public Semestre(String nom) {
+		super();
+		this.nom = nom;
+	}
+
+	
+	public Semestre(Long id, String nom) {
+		super();
+		this.id = id;
+		this.nom = nom;
 	}
 
 	public Long getId() {

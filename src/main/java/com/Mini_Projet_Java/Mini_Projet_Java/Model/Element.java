@@ -46,6 +46,13 @@ public class Element {
 		this.professeur = professeur;
 		this.notes = notes;
 	}
+	
+
+	public Element(String nomElement, double coefficient) {
+		super();
+		this.nomElement = nomElement;
+		this.coefficient = coefficient;
+	}
 
 	public Long getIdElement() {
 		return idElement;

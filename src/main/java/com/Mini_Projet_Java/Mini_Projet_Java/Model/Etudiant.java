@@ -8,13 +8,8 @@ import jakarta.persistence.*;
 public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generation ID
-    @Column(name = "code", unique = true, nullable = false)
     private Long codeEtudiant;
-
-    @Column(name = "nom")
     private String nomEtudiant;
-
-    @Column(name = "prenom")
     private String prenomEtudiant;
 
     @ManyToOne
@@ -39,8 +34,23 @@ public class Etudiant {
         this.semestre = semestre;
         this.notes = notes;
     }
+    
+    
 
-    public Long getCodeEtudiant() {
+    public Etudiant(Long codeEtudiant, String nomEtudiant, String prenomEtudiant) {
+		super();
+		this.codeEtudiant = codeEtudiant;
+		this.nomEtudiant = nomEtudiant;
+		this.prenomEtudiant = prenomEtudiant;
+	}
+
+	public Etudiant(String nomEtudiant, String prenomEtudiant) {
+		super();
+		this.nomEtudiant = nomEtudiant;
+		this.prenomEtudiant = prenomEtudiant;
+	}
+
+	public Long getCodeEtudiant() {
         return codeEtudiant;
     }
 

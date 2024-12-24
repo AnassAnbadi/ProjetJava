@@ -4,6 +4,8 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -13,144 +15,124 @@ import jakarta.persistence.Table;
 public class Professeur {
 
     @Id
-    @Column(name = "code", unique = true, nullable = false)
-    private String code;
-
-    @Column(name = "nom")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long code;
     private String nom;
-
-    @Column(name = "prenom")
     private String prenom;
-
-    @Column(name = "nom_utilisateur")
-    private String nomUtilisateur;
-
-    @Column(name = "mot_de_passe")
-    private String motDePasse;
-
-    @Column(name = "image")
+    private String username;
+    private String password;
     private String image;
-    
-    @Column(name = "specialite")
     private String specialite;
     
     @OneToMany(mappedBy = "professeur")
     private List<Element> elements;
 
-
-	// Variable statique pour stocker l'index suivant
-    private static int nextId = 1; 
-
-    public Professeur(String nom, String prenom, String nomUtilisateur, String motDePasse, String image,String specialite) {
-        this.code = generateCode(); 
-        this.nom = nom;
-        this.prenom = prenom;
-        this.nomUtilisateur = nomUtilisateur;
-        this.motDePasse = motDePasse;
-        this.image = image;
-        this.specialite=specialite;
-    }
-
-    
-    
-
-    public Professeur() {
-		// TODO Auto-generated constructor stub
+	public Professeur(Long code, String nom, String prenom, String username, String password, String image,
+			String specialite, List<Element> elements) {
+		super();
+		this.code = code;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.username = username;
+		this.password = password;
+		this.image = image;
+		this.specialite = specialite;
+		this.elements = elements;
 	}
 
+	public Professeur(String nom, String prenom, String username, String password, String image, String specialite,
+			List<Element> elements) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.username = username;
+		this.password = password;
+		this.image = image;
+		this.specialite = specialite;
+		this.elements = elements;
+	}
 
+	public Professeur(String nom, String prenom, String username, String password, String image, String specialite) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.username = username;
+		this.password = password;
+		this.image = image;
+		this.specialite = specialite;
+	}
 
+	public Professeur() {
+		super();
+	}
 
-	public String getCode() {
+	public Long getCode() {
 		return code;
 	}
 
-
-
-	public void setCode(String code) {
+	public void setCode(Long code) {
 		this.code = code;
 	}
-
-
 
 	public String getNom() {
 		return nom;
 	}
 
-
-
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-
-
 
 	public String getPrenom() {
 		return prenom;
 	}
 
-
-
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
 
-
-
-	public String getNomUtilisateur() {
-		return nomUtilisateur;
+	public String getUsername() {
+		return username;
 	}
 
-
-
-	public void setNomUtilisateur(String nomUtilisateur) {
-		this.nomUtilisateur = nomUtilisateur;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-
-
-	public String getMotDePasse() {
-		return motDePasse;
+	public String getPassword() {
+		return password;
 	}
 
-
-
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-
-
 
 	public String getImage() {
 		return image;
 	}
 
-
-
 	public void setImage(String image) {
 		this.image = image;
 	}
 
-
-	public String getSepicialite() {
+	public String getSpecialite() {
 		return specialite;
 	}
 
-
-
-
-	public void setSepicialite(String specialite) {
+	public void setSpecialite(String specialite) {
 		this.specialite = specialite;
 	}
 
+	public List<Element> getElements() {
+		return elements;
+	}
 
-	public static String generateCode() {
-        synchronized (Professeur.class) { // Synchronisation pour les environnements multithreadés
-            String code = "code" + nextId;
-            nextId++; 
-            return code;
-        }
-    }
+	public void setElements(List<Element> elements) {
+		this.elements = elements;
+	}
+
+
+
+    
 	
 	
 }

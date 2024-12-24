@@ -21,7 +21,7 @@ public class ProfesseurService {
     }
 
     // Récupérer un professeur par code
-    public Optional<Professeur> getProfesseurByCode(String code) {
+    public Optional<Professeur> getProfesseurByCode(Long code) {
         return professeurRepository.findById(code);
     }
 
@@ -31,12 +31,12 @@ public class ProfesseurService {
     }
 
     // Supprimer un professeur par code
-    public void deleteProfesseur(String code) {
+    public void deleteProfesseur(long code) {
         professeurRepository.deleteById(code);
     }
 
     // Récupérer un professeur par nom d'utilisateur
     public Professeur getProfesseurByNomUtilisateur(String nomUtilisateur) {
-        return professeurRepository.findByNomUtilisateur(nomUtilisateur);
+        return professeurRepository.findByUsername(nomUtilisateur);
     }
 }

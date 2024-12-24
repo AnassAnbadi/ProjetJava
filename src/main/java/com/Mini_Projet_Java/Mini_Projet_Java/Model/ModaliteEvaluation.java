@@ -32,6 +32,20 @@ public class ModaliteEvaluation {
 		this.coefficient = coefficient;
 		this.notes = notes;
 	}
+	
+
+	public ModaliteEvaluation(String typeModalite, double coefficient) {
+		super();
+		this.typeModalite = typeModalite;
+		this.coefficient = coefficient;
+	}
+
+	public ModaliteEvaluation(Long id, String typeModalite, double coefficient) {
+		super();
+		this.id = id;
+		this.typeModalite = typeModalite;
+		this.coefficient = coefficient;
+	}
 
 	public Long getId() {
 		return id;

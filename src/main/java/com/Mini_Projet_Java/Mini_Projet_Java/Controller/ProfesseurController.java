@@ -27,7 +27,7 @@ public class ProfesseurController {
 
     // Récupérer un professeur par code
     @GetMapping("/{code}")
-    public ResponseEntity<Professeur> getProfesseurByCode(@PathVariable String code) {
+    public ResponseEntity<Professeur> getProfesseurByCode(@PathVariable Long code) {
         Optional<Professeur> professeur = professeurService.getProfesseurByCode(code);
         return professeur.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -41,7 +41,7 @@ public class ProfesseurController {
 
     // Supprimer un professeur
     @DeleteMapping("/{code}")
-    public ResponseEntity<Void> deleteProfesseur(@PathVariable String code) {
+    public ResponseEntity<Void> deleteProfesseur(@PathVariable Long code) {
         professeurService.deleteProfesseur(code);
         return ResponseEntity.noContent().build();
     }
@@ -56,4 +56,7 @@ public class ProfesseurController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    
+    
 }

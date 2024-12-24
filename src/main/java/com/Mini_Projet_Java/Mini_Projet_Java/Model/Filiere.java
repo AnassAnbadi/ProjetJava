@@ -2,6 +2,8 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,9 +15,11 @@ public class Filiere {
     private String nomFiliere;
 
     @OneToMany(mappedBy = "filiere")
+    
     private List<Etudiant> etudiants;
     
     @OneToMany(mappedBy = "filiere")
+    
     private List<Module> module;
 
 	public Filiere() {
@@ -33,6 +37,20 @@ public class Filiere {
 		this.nomFiliere = nomFiliere;
 		this.etudiants = etudiants;
 		this.module = module;
+	}
+
+	
+	
+	public Filiere(Long id, String nomFiliere) {
+		super();
+		this.id = id;
+		this.nomFiliere = nomFiliere;
+	}
+
+	
+	
+	public Filiere(String nomFiliere) {
+		this.nomFiliere = nomFiliere;
 	}
 
 	public Long getId() {

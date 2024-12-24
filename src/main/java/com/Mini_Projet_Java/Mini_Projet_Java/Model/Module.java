@@ -2,6 +2,8 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,13 +23,16 @@ public class Module {
 
 	    @ManyToOne
 	    @JoinColumn(name="semestre_id") 
+	    
 	    private Semestre semestre;
 	    
 	    @ManyToOne
 	    @JoinColumn(name="Filiere_id") 
+	    
 	    private Filiere filiere;
 
 	    @OneToMany(mappedBy = "module")
+	    
 	    private List<Element> elements;
 	    
 	    
@@ -49,6 +54,21 @@ public class Module {
 			this.semestre = semestre;
 			this.elements = elements;
 			this.filiere=filiere;
+		}
+		
+		
+
+		public Module(Long codeModule, String nomModule) {
+			super();
+			this.codeModule = codeModule;
+			this.nomModule = nomModule;
+		}
+		
+		
+
+		public Module(String nomModule) {
+			super();
+			this.nomModule = nomModule;
 		}
 
 		public Long getCodeModule() {
