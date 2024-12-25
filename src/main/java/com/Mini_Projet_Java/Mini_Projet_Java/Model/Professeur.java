@@ -16,7 +16,7 @@ public class Professeur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long code;
+    private Long id;
     private String nom;
     private String prenom;
     private String username;
@@ -27,10 +27,10 @@ public class Professeur {
     @OneToMany(mappedBy = "professeur")
     private List<Element> elements;
 
-	public Professeur(Long code, String nom, String prenom, String username, String password, String image,
+	public Professeur(Long id, String nom, String prenom, String username, String password, String image,
 			String specialite, List<Element> elements) {
 		super();
-		this.code = code;
+		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.username = username;
@@ -40,38 +40,17 @@ public class Professeur {
 		this.elements = elements;
 	}
 
-	public Professeur(String nom, String prenom, String username, String password, String image, String specialite,
-			List<Element> elements) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.username = username;
-		this.password = password;
-		this.image = image;
-		this.specialite = specialite;
-		this.elements = elements;
-	}
-
-	public Professeur(String nom, String prenom, String username, String password, String image, String specialite) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.username = username;
-		this.password = password;
-		this.image = image;
-		this.specialite = specialite;
-	}
-
+	
 	public Professeur() {
 		super();
 	}
 
-	public Long getCode() {
-		return code;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCode(Long code) {
-		this.code = code;
+	public void setId(Long code) {
+		this.id = code;
 	}
 
 	public String getNom() {

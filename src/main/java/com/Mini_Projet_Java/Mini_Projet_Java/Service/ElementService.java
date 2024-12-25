@@ -33,7 +33,7 @@ public class ElementService {
     // Update an existing element
     public Element updateElement(Long id, Element element) {
         if (elementRepository.existsById(id)) {
-            element.setIdElement(id);
+            element.setId(id);
             return elementRepository.save(element);
         }
         return null; // or throw exception

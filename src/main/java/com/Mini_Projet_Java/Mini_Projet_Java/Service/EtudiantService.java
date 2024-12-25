@@ -30,7 +30,7 @@ public class EtudiantService {
 
     public Etudiant updateEtudiant(Long code, Etudiant updatedEtudiant) {
         if (etudiantRepository.existsById(code)) {
-            updatedEtudiant.setCodeEtudiant(code);
+            updatedEtudiant.setId(code);
             return etudiantRepository.save(updatedEtudiant);
         }
         return null;
@@ -42,5 +42,10 @@ public class EtudiantService {
             return true;
         }
         return false;
+    }
+    
+    //list etudiant by prof et element
+    public List<Etudiant> getEtudiantsByProfesseur_Element(Long professeurId,Long ElementId) {
+        return etudiantRepository.findEtudiantsByProfesseurIdElementId(professeurId,ElementId);
     }
 }

@@ -12,9 +12,6 @@ public class NoteElement {
     @JoinColumn(name="element_id")
     private Element element;
 
-    @ManyToOne
-    @JoinColumn(name="etudiant_id")
-    private Etudiant etudiant;
 
     private double noteElement;
 
@@ -22,6 +19,10 @@ public class NoteElement {
     @JoinColumn(name="modalite_id")
     private ModaliteEvaluation modalite;
     
+    @ManyToOne
+    @JoinColumn(name = "etudiant_id")
+    private Etudiant etudiant;
+
     
 
 	public NoteElement() {
@@ -30,13 +31,33 @@ public class NoteElement {
 
 
 
-	public NoteElement(Long id, Element element, Etudiant etudiant, double noteElement, ModaliteEvaluation modalite) {
-		this.id = id;
+
+	public NoteElement(Element element, double noteElement, ModaliteEvaluation modalite, Etudiant etudiant) {
+		super();
 		this.element = element;
-		this.etudiant = etudiant;
 		this.noteElement = noteElement;
 		this.modalite = modalite;
+		this.etudiant = etudiant;
 	}
+
+
+
+
+
+
+
+	public NoteElement(Long id, Element element, double noteElement, ModaliteEvaluation modalite, Etudiant etudiant) {
+		super();
+		this.id = id;
+		this.element = element;
+		this.noteElement = noteElement;
+		this.modalite = modalite;
+		this.etudiant = etudiant;
+	}
+
+
+
+
 
 
 
@@ -64,15 +85,6 @@ public class NoteElement {
 
 
 
-	public Etudiant getEtudiant() {
-		return etudiant;
-	}
-
-
-
-	public void setEtudiant(Etudiant etudiant) {
-		this.etudiant = etudiant;
-	}
 
 
 
@@ -96,6 +108,20 @@ public class NoteElement {
 
 	public void setModalite(ModaliteEvaluation modalite) {
 		this.modalite = modalite;
+	}
+
+
+
+
+	public Etudiant getEtudiant() {
+		return etudiant;
+	}
+
+
+
+
+	public void setEtudiant(Etudiant etudiant) {
+		this.etudiant = etudiant;
 	}
 	
 	

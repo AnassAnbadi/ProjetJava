@@ -26,7 +26,7 @@ public class EtudiantController {
         return etudiant != null ? ResponseEntity.ok(etudiant) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping
+    @PostMapping("add")
     public Etudiant addEtudiant(@RequestBody Etudiant etudiant) {
         return etudiantService.addEtudiant(etudiant);
     }
@@ -40,5 +40,11 @@ public class EtudiantController {
     @DeleteMapping("/{code}")
     public ResponseEntity<Void> deleteEtudiant(@PathVariable Long code) {
         return etudiantService.deleteEtudiant(code) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+    
+    //
+    @GetMapping("/EtudiantListByElement")
+    public List<Etudiant> getEtudiantsByProfesseur_Element(@RequestParam Long professeurId,@RequestParam Long ElementId) {
+        return etudiantService.getEtudiantsByProfesseur_Element(professeurId, ElementId);
     }
 }

@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generation ID
-    private Long codeEtudiant;
+    private Long id;
     private String nomEtudiant;
     private String prenomEtudiant;
 
@@ -20,7 +20,7 @@ public class Etudiant {
     @JoinColumn(name = "semestre_id")
     private Semestre semestre;
 
-    @OneToMany(mappedBy = "etudiant")
+    @OneToMany(mappedBy = "etudiant",fetch = FetchType.LAZY)
     private List<NoteElement> notes;
 
     public Etudiant() {
@@ -35,11 +35,17 @@ public class Etudiant {
         this.notes = notes;
     }
     
-    
+    public Etudiant(String nomEtudiant, String prenomEtudiant, Filiere filiere, Semestre semestre) {
+        this.nomEtudiant = nomEtudiant;
+        this.prenomEtudiant = prenomEtudiant;
+        this.filiere = filiere;
+        this.semestre = semestre;
+        
+    } 
 
     public Etudiant(Long codeEtudiant, String nomEtudiant, String prenomEtudiant) {
 		super();
-		this.codeEtudiant = codeEtudiant;
+		this.id = codeEtudiant;
 		this.nomEtudiant = nomEtudiant;
 		this.prenomEtudiant = prenomEtudiant;
 	}
@@ -50,12 +56,12 @@ public class Etudiant {
 		this.prenomEtudiant = prenomEtudiant;
 	}
 
-	public Long getCodeEtudiant() {
-        return codeEtudiant;
+	public Long getId() {
+        return id;
     }
 
-    public void setCodeEtudiant(Long codeEtudiant) {
-        this.codeEtudiant = codeEtudiant;
+    public void setId(Long codeEtudiant) {
+        this.id = codeEtudiant;
     }
 
     public String getNomEtudiant() {

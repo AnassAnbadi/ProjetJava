@@ -9,19 +9,19 @@ import jakarta.persistence.*;
 public class Element {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idElement;
+    private Long id;
     private String nomElement;
     private double coefficient;
 
     @ManyToOne
-    @JoinColumn(name="module_id")
+    @JoinColumn(name="module_id" )
     private Module module;
     
     @ManyToOne
     @JoinColumn(name="professeur_id")
     private Professeur professeur;
 
-    @OneToMany(mappedBy = "element")
+    @OneToMany(mappedBy = "element",fetch = FetchType.LAZY)
     private List<NoteElement> notes;
 
 	public Element() {
@@ -30,7 +30,7 @@ public class Element {
 
 	public Element(Long idElement, String nomElement, double coefficient, Module module, Professeur professeur,
 			List<NoteElement> notes) {
-		this.idElement = idElement;
+		this.id = idElement;
 		this.nomElement = nomElement;
 		this.coefficient = coefficient;
 		this.module = module;
@@ -46,7 +46,14 @@ public class Element {
 		this.professeur = professeur;
 		this.notes = notes;
 	}
+	public Element(String nomElement, double coefficient, Module module, Professeur professeur) {
+		this.nomElement = nomElement;
+		this.coefficient = coefficient;
+		this.module = module;
+		this.professeur = professeur;
+	}
 	
+
 
 	public Element(String nomElement, double coefficient) {
 		super();
@@ -54,12 +61,13 @@ public class Element {
 		this.coefficient = coefficient;
 	}
 
-	public Long getIdElement() {
-		return idElement;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdElement(Long idElement) {
-		this.idElement = idElement;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNomElement() {

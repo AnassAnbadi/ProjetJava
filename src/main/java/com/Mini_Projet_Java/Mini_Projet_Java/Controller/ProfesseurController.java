@@ -33,7 +33,7 @@ public class ProfesseurController {
     }
 
     // Ajouter ou mettre à jour un professeur
-    @PostMapping
+    @PostMapping("add")
     public ResponseEntity<Professeur> saveOrUpdateProfesseur(@RequestBody Professeur professeur) {
         Professeur savedProfesseur = professeurService.saveOrUpdateProfesseur(professeur);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProfesseur);

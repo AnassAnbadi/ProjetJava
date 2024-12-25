@@ -14,11 +14,11 @@ public class Filiere {
     private Long id;
     private String nomFiliere;
 
-    @OneToMany(mappedBy = "filiere")
+    @OneToMany(mappedBy = "filiere",fetch = FetchType.LAZY)
     
     private List<Etudiant> etudiants;
     
-    @OneToMany(mappedBy = "filiere")
+    @OneToMany(mappedBy = "filiere",fetch = FetchType.LAZY)
     
     private List<Module> module;
 

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/elements")
+@RequestMapping("/elements")
 public class ElementController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class ElementController {
     }
 
     // Create a new element
-    @PostMapping
+    @PostMapping("add")
     public ResponseEntity<Element> createElement(@RequestBody Element element) {
         Element createdElement = elementService.createElement(element);
         return new ResponseEntity<>(createdElement, HttpStatus.CREATED);

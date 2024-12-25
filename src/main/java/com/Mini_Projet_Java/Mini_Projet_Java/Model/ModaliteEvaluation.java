@@ -13,7 +13,7 @@ public class ModaliteEvaluation {
     private String typeModalite;
     private double coefficient;
 
-    @OneToMany(mappedBy = "modalite")
+    @OneToMany(mappedBy = "modalite",fetch = FetchType.LAZY)
     private List<NoteElement> notes;
 
 	public ModaliteEvaluation() {
