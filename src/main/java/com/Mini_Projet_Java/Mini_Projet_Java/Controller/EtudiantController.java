@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/etudiants")
+@CrossOrigin(origins = "http://localhost:3000") // Frontend autorisé
 public class EtudiantController {
 
     @Autowired

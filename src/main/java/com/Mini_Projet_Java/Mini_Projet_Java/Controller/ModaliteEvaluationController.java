@@ -13,6 +13,7 @@ import com.Mini_Projet_Java.Mini_Projet_Java.Service.ModaliteEvaluationService;
 
 @RestController
 @RequestMapping("/api/modalites")
+@CrossOrigin(origins = "http://localhost:3000") // Frontend autorisé
 public class ModaliteEvaluationController {
 
     @Autowired

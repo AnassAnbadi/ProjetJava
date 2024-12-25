@@ -13,6 +13,7 @@ import com.Mini_Projet_Java.Mini_Projet_Java.Service.ProfesseurService;
 
 @RestController
 @RequestMapping("/api/professeurs")
+@CrossOrigin(origins = "http://localhost:3000") // Frontend autorisé
 public class ProfesseurController {
 
     @Autowired
@@ -38,7 +39,12 @@ public class ProfesseurController {
         Professeur savedProfesseur = professeurService.saveOrUpdateProfesseur(professeur);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProfesseur);
     }
-
+    @PutMapping("/{id}")
+    public Professeur updateProfesseur(
+            @PathVariable Long id,
+            @RequestBody Professeur professeurDetails) {
+        return professeurService.updateProfesseur(id, professeurDetails);
+    }
     // Supprimer un professeur
     @DeleteMapping("/{code}")
     public ResponseEntity<Void> deleteProfesseur(@PathVariable Long code) {
