@@ -1,12 +1,14 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Service;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Etudiant;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.EtudiantDTO;
 import com.Mini_Projet_Java.Mini_Projet_Java.Repository.EtudiantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EtudiantService {
@@ -45,7 +47,14 @@ public class EtudiantService {
     }
     
     //list etudiant by prof et element
-    public List<Etudiant> getEtudiantsByProfesseur_Element(Long professeurId,Long ElementId) {
-        return etudiantRepository.findEtudiantsByProfesseurIdElementId(professeurId,ElementId);
+   // public List<Etudiant> getEtudiantsByProfesseur_Element(Long professeurId,Long ElementId) {
+       // return etudiantRepository.findEtudiantsByProfesseurIdElementId(professeurId,ElementId);
+    //}
+    public List<EtudiantDTO> findEtudiantsByProfesseurIdElementId(Long professeurId, Long elementId) {
+        List<Etudiant> etudiants = etudiantRepository.findEtudiantsByProfesseurIdElementId(professeurId, elementId);
+        return etudiants.stream()
+                        .map(e -> new EtudiantDTO(e.getId(), e.getNomEtudiant(), e.getPrenomEtudiant(),e.getFiliere().getId(),e.getSemestre().getId()))
+                        .collect(Collectors.toList());
     }
+
 }

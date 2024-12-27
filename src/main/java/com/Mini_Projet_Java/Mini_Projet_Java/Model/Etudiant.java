@@ -20,7 +20,7 @@ public class Etudiant {
     @JoinColumn(name = "semestre_id")
     private Semestre semestre;
 
-    @OneToMany(mappedBy = "etudiant",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "etudiant")
     private List<NoteElement> notes;
 
     public Etudiant() {

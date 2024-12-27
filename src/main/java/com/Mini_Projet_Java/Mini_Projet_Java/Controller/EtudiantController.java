@@ -1,6 +1,7 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Controller;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Etudiant;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.EtudiantDTO;
 import com.Mini_Projet_Java.Mini_Projet_Java.Service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +45,7 @@ public class EtudiantController {
     
     //
     @GetMapping("/EtudiantListByElement")
-    public List<Etudiant> getEtudiantsByProfesseur_Element(@RequestParam Long professeurId,@RequestParam Long ElementId) {
-        return etudiantService.getEtudiantsByProfesseur_Element(professeurId, ElementId);
+    public List<EtudiantDTO> getEtudiantsByProfesseur_Element(@RequestParam Long professeurId,@RequestParam Long ElementId) {
+        return etudiantService.findEtudiantsByProfesseurIdElementId(professeurId, ElementId);
     }
 }
