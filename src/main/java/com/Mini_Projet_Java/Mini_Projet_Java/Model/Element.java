@@ -21,7 +21,7 @@ public class Element {
     @JoinColumn(name="professeur_id")
     private Professeur professeur;
 
-    @OneToMany(mappedBy = "element",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "element")
     private List<NoteElement> notes;
 
 	public Element() {

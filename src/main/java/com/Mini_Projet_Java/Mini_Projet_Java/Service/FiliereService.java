@@ -21,6 +21,9 @@ public class FiliereService {
     public Optional<Filiere> getFiliereById(Long id) {
         return filiereRepository.findById(id);
     }
+    public Filiere getFiliereBynom(String nomFiliere) {
+        return filiereRepository.findBynomFiliere(nomFiliere);
+    }
 
     public Filiere createFiliere(Filiere filiere) {
         return filiereRepository.save(filiere);

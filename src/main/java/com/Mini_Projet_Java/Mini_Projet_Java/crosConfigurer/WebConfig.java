@@ -13,8 +13,8 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Permet tous les endpoints
-                        .allowedOrigins("http://localhost:5173") // L'origine de votre application React
+                registry.addMapping("/api/**") // Permet tous les endpoints
+                        .allowedOrigins("http://localhost:3000") // L'origine de votre application React
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Les méthodes HTTP autorisées
                         .allowedHeaders("*") // Autorise tous les en-têtes
                         .allowCredentials(true); // Autorise l'envoi des cookies

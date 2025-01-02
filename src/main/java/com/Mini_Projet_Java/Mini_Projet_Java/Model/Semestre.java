@@ -1,14 +1,16 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Semestre {
+public class Semestre implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +25,7 @@ public class Semestre {
     private List<Etudiant> etudiants;
 
 	public Semestre() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Semestre(Long id, String nom, List<Module> modules, List<Etudiant> etudiants) {

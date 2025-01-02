@@ -7,5 +7,7 @@ import com.Mini_Projet_Java.Mini_Projet_Java.Model.Semestre;
 
 @Repository
 public interface SemestreRepository extends JpaRepository<Semestre, Long> {
+
+	Semestre findBynom(String nom);
     // Vous pouvez ajouter des méthodes de recherche personnalisées ici si nécessaire
 }

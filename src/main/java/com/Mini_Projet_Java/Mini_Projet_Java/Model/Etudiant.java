@@ -1,11 +1,15 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
+import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Etudiant {
+public class Etudiant{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-generation ID
     private Long id;
@@ -20,11 +24,10 @@ public class Etudiant {
     @JoinColumn(name = "semestre_id")
     private Semestre semestre;
 
-    @OneToMany(mappedBy = "etudiant",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "etudiant")
     private List<NoteElement> notes;
 
     public Etudiant() {
-        // Constructeur par défaut
     }
 
     public Etudiant(String nomEtudiant, String prenomEtudiant, Filiere filiere, Semestre semestre, List<NoteElement> notes) {

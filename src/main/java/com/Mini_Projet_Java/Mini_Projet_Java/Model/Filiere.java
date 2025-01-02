@@ -1,14 +1,16 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Filiere {
+public class Filiere implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +25,7 @@ public class Filiere {
     private List<Module> module;
 
 	public Filiere() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public Filiere(Long id, String nomFiliere, List<Etudiant> etudiants, List<Module> module) {

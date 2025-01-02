@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/filieres")
-@CrossOrigin(origins = "http://localhost:3000") // Frontend autorisé
+@CrossOrigin(origins = "http://localhost:3000")
 public class FiliereController {
 
     @Autowired

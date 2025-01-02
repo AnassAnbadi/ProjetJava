@@ -11,8 +11,7 @@ import com.Mini_Projet_Java.Mini_Projet_Java.Model.Module;
 import com.Mini_Projet_Java.Mini_Projet_Java.Service.ModuleService;
 
 @RestController
-@RequestMapping("/modules")
-@CrossOrigin(origins = "http://localhost:3000") // Frontend autorisé
+@RequestMapping("/api/modules")
 public class ModuleController {
 
     @Autowired

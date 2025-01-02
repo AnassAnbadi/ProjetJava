@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.Mini_Projet_Java.Mini_Projet_Java.Model.Filiere;
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Semestre;
 import com.Mini_Projet_Java.Mini_Projet_Java.Service.SemestreService;
 
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/semestres")
-@CrossOrigin(origins = "http://localhost:3000") // Frontend autorisé
+@CrossOrigin(origins = "http://localhost:3000")
 public class SemestreController {
 
     @Autowired
@@ -38,6 +39,11 @@ public class SemestreController {
     public ResponseEntity<Semestre> saveOrUpdateSemestre(@RequestBody Semestre semestre) {
         Semestre savedSemestre = semestreService.saveOrUpdateSemestre(semestre);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedSemestre);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Semestre> updateSemestre(@PathVariable Long id, @RequestBody Semestre semestre) {
+        Semestre updatedSemestre = semestreService.updateSemestre(id, semestre);
+        return updatedSemestre != null ? ResponseEntity.ok(updatedSemestre) : ResponseEntity.notFound().build();
     }
 
     // Supprimer un semestre par ID

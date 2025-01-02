@@ -19,7 +19,10 @@ public class SemestreService {
     public List<Semestre> getAllSemestres() {
         return semestreRepository.findAll();
     }
-
+    public Semestre getSemestreByNom(String nom) {
+        return semestreRepository.findBynom(nom);
+    }
+    
     // Récupérer un semestre par ID
     public Optional<Semestre> getSemestreById(Long id) {
         return semestreRepository.findById(id);
@@ -34,4 +37,12 @@ public class SemestreService {
     public void deleteSemestre(Long id) {
         semestreRepository.deleteById(id);
     }
+
+	public Semestre updateSemestre(Long id, Semestre semestre) {
+		if(semestreRepository.existsById(id)) {
+            semestre.setId(id);
+            return semestreRepository.save(semestre);
+        }
+        return null; // or throw exception
+	}
 }
