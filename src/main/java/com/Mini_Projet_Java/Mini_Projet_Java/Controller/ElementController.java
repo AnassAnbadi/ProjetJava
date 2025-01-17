@@ -1,7 +1,11 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Controller;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Element;
+
 import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.ElementDTO;
+
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.ElementForProfDTO;
+
 import com.Mini_Projet_Java.Mini_Projet_Java.Service.ElementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +30,9 @@ public class ElementController {
     
     //Get element by prof id
     @GetMapping("/profElemnet/{id}")
-    public ResponseEntity<List<ElementDTO>> getElementsByProf(@PathVariable Long id) {
-        List<ElementDTO> elements = elementService.getElementsByProf(id);
+
+    public ResponseEntity<List<ElementForProfDTO>> getElementsByProf(@PathVariable Long id) {
+        List<ElementForProfDTO> elements = elementService.getElementsByProf(id);
         if (elements.isEmpty()) {
             return ResponseEntity.notFound().build(); // Return 404 if no elements are found
         }

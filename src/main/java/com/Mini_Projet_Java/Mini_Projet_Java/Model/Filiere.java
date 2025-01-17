@@ -19,11 +19,13 @@ public class Filiere{
 
     @OneToMany(mappedBy = "filiere",fetch = FetchType.LAZY)
     @JsonIgnore
-    
+
     private List<Etudiant> etudiants;
-    
+   
     @OneToMany(mappedBy = "filiere",fetch = FetchType.LAZY)
+
    @JsonIgnore
+
     private List<Module> module;
 
 	public Filiere() {

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.ModaliteEvaluation;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.ModaliteElementDTO;
 import com.Mini_Projet_Java.Mini_Projet_Java.Service.ModaliteEvaluationService;
 
 @RestController
@@ -18,42 +19,30 @@ public class ModaliteEvaluationController {
     @Autowired
     private ModaliteEvaluationService modaliteEvaluationService;
 
-    // Récupérer toutes les modalités
-    @GetMapping
-    public ResponseEntity<List<ModaliteEvaluation>> getAllModalites() {
-        List<ModaliteEvaluation> modalites = modaliteEvaluationService.getAllModalites();
-        return ResponseEntity.ok(modalites);
-    }
 
-    // Récupérer une modalité par ID
-    @GetMapping("/{id}")
-    public ResponseEntity<ModaliteEvaluation> getModaliteById(@PathVariable Long id) {
-        Optional<ModaliteEvaluation> modalite = modaliteEvaluationService.getModaliteById(id);
-        return modalite.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    
+    
+    @PostMapping("/SaveAllModalite")
+    public ResponseEntity<List<ModaliteEvaluation>> saveAllModalites(
+            @RequestBody List<ModaliteEvaluation> modalites) {
+        List<ModaliteEvaluation> savedModalites = modaliteEvaluationService.saveAllModalites(modalites);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedModalites);
     }
-
-    // Ajouter ou mettre à jour une modalité
-    @PostMapping
-    public ResponseEntity<ModaliteEvaluation> saveOrUpdateModalite(@RequestBody ModaliteEvaluation modalite) {
-        ModaliteEvaluation savedModalite = modaliteEvaluationService.saveOrUpdateModalite(modalite);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedModalite);
+    
+    @PutMapping("/UpdateAllModalite")
+    public ResponseEntity<List<ModaliteEvaluation>> updateAllModalites(
+            @RequestBody List<ModaliteEvaluation> modalites) {
+        List<ModaliteEvaluation> savedModalites = modaliteEvaluationService.updateAllModalites(modalites);
+        return ResponseEntity.ok(savedModalites);
     }
-
-    // Supprimer une modalité par ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteModalite(@PathVariable Long id) {
-        modaliteEvaluationService.deleteModalite(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    // Récupérer une modalité par type
-    @GetMapping("/by-type")
-    public ResponseEntity<ModaliteEvaluation> getModaliteByType(@RequestParam String typeModalite) {
-        ModaliteEvaluation modalite = modaliteEvaluationService.getModaliteByType(typeModalite);
-        if (modalite != null) {
-            return ResponseEntity.ok(modalite);
-        } else {
-            return ResponseEntity.notFound().build();
+    
+    @GetMapping("/ForElement")
+    public ResponseEntity<List<ModaliteElementDTO>> getModalitesByElementId(@RequestParam Long elementId) {
+        List<ModaliteElementDTO> modalites = modaliteEvaluationService.getModalitesByElementId(elementId);
+        if (modalites.isEmpty()) {
+            return ResponseEntity.noContent().build(); // Renvoie 204 No Content si aucune donnée trouvée
         }
+        return ResponseEntity.ok(modalites); // Renvoie 200 OK avec les données
     }
+    
 }

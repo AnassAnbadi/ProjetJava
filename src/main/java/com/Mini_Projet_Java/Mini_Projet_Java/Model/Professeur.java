@@ -5,8 +5,11 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+
 import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,7 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Professeur")
+@Table
 public class Professeur {
 
     @Id
@@ -26,9 +29,11 @@ public class Professeur {
     private String password;
     private String image;
     private String specialite;
+
     
     @OneToMany(mappedBy = "professeur")
     @JsonIgnore
+
     private List<Element> elements;
 
 	public Professeur(Long id, String nom, String prenom, String username, String password, String image,

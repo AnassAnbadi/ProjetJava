@@ -1,9 +1,16 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Etudiant;
+
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Filiere;
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Semestre;
 import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.EtudiantDTO;
+
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.EtudiantForProfDTO;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.StudentDTO;
 import com.Mini_Projet_Java.Mini_Projet_Java.Repository.EtudiantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -127,13 +134,15 @@ public class EtudiantService {
    // public List<Etudiant> getEtudiantsByProfesseur_Element(Long professeurId,Long ElementId) {
        // return etudiantRepository.findEtudiantsByProfesseurIdElementId(professeurId,ElementId);
     //}
-	/*
-	 * public List<EtudiantDTO> findEtudiantsByProfesseurIdElementId(Long
-	 * professeurId, Long elementId) { List<Etudiant> etudiants =
-	 * etudiantRepository.findEtudiantsByProfesseurIdElementId(professeurId,
-	 * elementId); return etudiants.stream() .map(e -> new EtudiantDTO(e.getId(),
-	 * e.getNomEtudiant(),
-	 * e.getPrenomEtudiant(),e.getFiliere().getId(),e.getSemestre().getId()))
-	 * .collect(Collectors.toList()); }
-	 */
+
+    
+    public List<StudentDTO> getStudentsByElementId(Long elementId,Long modaliteId) {
+    	List<StudentDTO>l=etudiantRepository.findStudentsWithGradesByElementId(elementId,modaliteId);
+    	for (StudentDTO s:l) {
+    	System.out.println();
+    	}
+        return etudiantRepository.findStudentsWithGradesByElementId(elementId,modaliteId);
+    }
+    
+
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Module;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.ElementForProfDTO;
 import com.Mini_Projet_Java.Mini_Projet_Java.Service.ModuleService;
 
 @RestController
@@ -52,4 +53,6 @@ public class ModuleController {
         moduleService.deleteModule(id);
         return ResponseEntity.ok("Module deleted successfully with id: " + id);
     }
+    
+    
 }

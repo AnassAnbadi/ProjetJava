@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+
 import jakarta.persistence.*;
 
 @Entity
@@ -18,18 +21,19 @@ public class Etudiant{
     private String nomEtudiant;
     private String prenomEtudiant;
 
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "filiere_id")
     @JsonBackReference
     private Filiere filiere;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "semestre_id")
     @JsonBackReference
     private Semestre semestre;
 
     @OneToMany(mappedBy = "etudiant")
     @JsonIgnore
+
     private List<NoteElement> notes;
 
     public Etudiant() {

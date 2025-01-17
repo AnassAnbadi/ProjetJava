@@ -20,7 +20,7 @@ import com.Mini_Projet_Java.Mini_Projet_Java.Service.AdministrateurService;
 
 
 @RestController
-@RequestMapping(path="/Administrateur")
+@RequestMapping(path="/api/Administrateur")
 public class AdministrateurController {
 
 	@Autowired
