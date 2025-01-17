@@ -32,6 +32,7 @@ public class EtudiantService {
     // Méthode de conversion des étudiants en DTOs
     public List<EtudiantDTO> getAllEtudiantsDto() {
         List<Etudiant> etudiants = getAllEtudiants();
+        
         return etudiants.stream()
                 .map(etudiant -> new EtudiantDTO(
                         etudiant.getId(),
@@ -50,11 +51,16 @@ public class EtudiantService {
     }
 
 
-    public Etudiant addEtudiant(EtudiantDTO etudiantDTO) {
-        Filiere filiere = filiereService.getFiliereBynom(etudiantDTO.getNomFiliere());
-        Semestre semestre = semestreService.getSemestreByNom(etudiantDTO.getNomSemestre());
+    public EtudiantDTO addEtudiant(EtudiantDTO etudiantDTO) {
+        Filiere f = filiereService.findByNom(etudiantDTO.getNomFiliere());
+        Semestre s = semestreService.findByNom(etudiantDTO.getNomSemestre());
+        Filiere filiere =new Filiere();
+        Semestre semestre =new Semestre();
 
-        if (filiere == null || semestre == null) {
+        filiere.setId(f.getId());
+        semestre.setId(s.getId());
+        
+        if (filiere.getId() == null || semestre.getId() == null) {
             throw new RuntimeException("Filiere ou Semestre introuvable !");
         }
 
@@ -65,15 +71,46 @@ public class EtudiantService {
                 filiere,
                 semestre
         );
-
-        // Sauvegarde de l'étudiant dans la base de données
-        return etudiantRepository.save(etudiant);
+        etudiant=etudiantRepository.save(etudiant);
+        EtudiantDTO etudiantDTO2 =new EtudiantDTO(etudiant.getId(),
+                etudiant.getNomEtudiant(),
+                etudiant.getPrenomEtudiant(),
+                etudiantDTO.getNomFiliere(),  // Assuming Filiere has a getNomFiliere() method
+                etudiantDTO.getNomSemestre());
+        
+        return etudiantDTO2;
     }
 
-    public Etudiant updateEtudiant(Long code, Etudiant updatedEtudiant) {
+    public EtudiantDTO updateEtudiant(Long code, EtudiantDTO updatedEtudiant) {
         if (etudiantRepository.existsById(code)) {
             updatedEtudiant.setId(code);
-            return etudiantRepository.save(updatedEtudiant);
+            
+            Filiere f = filiereService.findByNom(updatedEtudiant.getNomFiliere());
+            Semestre s = semestreService.findByNom(updatedEtudiant.getNomSemestre());
+            Filiere filiere =new Filiere();
+            Semestre semestre =new Semestre();
+
+            filiere.setId(f.getId());
+            semestre.setId(s.getId());
+            
+            if (filiere.getId() == null || semestre.getId() == null) {
+                throw new RuntimeException("Filiere ou Semestre introuvable !");
+            }
+
+            // Conversion de EtudiantDTO en Etudiant
+            Etudiant etudiant = new Etudiant(updatedEtudiant.getId(),
+            		updatedEtudiant.getNomEtudiant(),
+            		updatedEtudiant.getPrenomEtudiant(),
+                    filiere,
+                    semestre
+            );
+            etudiant=etudiantRepository.save(etudiant);
+            EtudiantDTO etudiantDTO2 =new EtudiantDTO(etudiant.getId(),
+                    etudiant.getNomEtudiant(),
+                    etudiant.getPrenomEtudiant(),
+                    etudiant.getFiliere().getNomFiliere(),  // Assuming Filiere has a getNomFiliere() method
+                    etudiant.getSemestre().getNom());
+            return etudiantDTO2;
         }
         return null;
     }

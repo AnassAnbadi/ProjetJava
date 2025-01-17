@@ -2,6 +2,9 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +28,7 @@ public class Professeur {
     private String specialite;
     
     @OneToMany(mappedBy = "professeur")
+    @JsonIgnore
     private List<Element> elements;
 
 	public Professeur(Long id, String nom, String prenom, String username, String password, String image,

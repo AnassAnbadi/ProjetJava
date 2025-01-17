@@ -17,6 +17,14 @@ public class ElementDTO {
         this.filiereName = filiereName;
         this.semestreName = semestreName;
     }
+    public ElementDTO(String nomElement, double coefficient, String moduleName, String filiereName, String semestreName) {
+        this.nomElement = nomElement;
+        this.coefficient = coefficient;
+        this.moduleName = moduleName;
+        this.filiereName = filiereName;
+        this.semestreName = semestreName;
+    }
+
 
     // Getters and Setters
     public Long getId() {

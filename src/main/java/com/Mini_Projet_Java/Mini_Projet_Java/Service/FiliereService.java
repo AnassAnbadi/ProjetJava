@@ -21,8 +21,9 @@ public class FiliereService {
     public Optional<Filiere> getFiliereById(Long id) {
         return filiereRepository.findById(id);
     }
-    public Filiere getFiliereBynom(String nomFiliere) {
-        return filiereRepository.findBynomFiliere(nomFiliere);
+    public Filiere findByNom(String nomFiliere) {
+        return filiereRepository.findByNomFiliere(nomFiliere)
+                .orElseThrow(() -> new RuntimeException("Filiere introuvable avec le nom : " + nomFiliere));
     }
 
     public Filiere createFiliere(Filiere filiere) {

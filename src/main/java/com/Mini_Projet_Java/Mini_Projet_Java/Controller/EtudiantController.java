@@ -35,13 +35,13 @@ public class EtudiantController {
     
 
     @PostMapping("add")
-    public Etudiant addEtudiant(@RequestBody EtudiantDTO etudiantDTO) {
+    public EtudiantDTO addEtudiant(@RequestBody EtudiantDTO etudiantDTO) {
         return etudiantService.addEtudiant(etudiantDTO);
     }
 
     @PutMapping("/{code}")
-    public ResponseEntity<Etudiant> updateEtudiant(@PathVariable Long code, @RequestBody Etudiant etudiant) {
-        Etudiant updatedEtudiant = etudiantService.updateEtudiant(code, etudiant);
+    public ResponseEntity<EtudiantDTO> updateEtudiant(@PathVariable Long code, @RequestBody EtudiantDTO etudiant) {
+        EtudiantDTO updatedEtudiant = etudiantService.updateEtudiant(code, etudiant);
         return updatedEtudiant != null ? ResponseEntity.ok(updatedEtudiant) : ResponseEntity.notFound().build();
     }
 

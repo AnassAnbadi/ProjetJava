@@ -43,7 +43,7 @@ public class ElementController {
     }
 
     // Create a new element
-    @PostMapping("add")
+    @PostMapping("/add")
     public ResponseEntity<Element> createElement(@RequestBody Element element) {
         Element createdElement = elementService.createElement(element);
         return new ResponseEntity<>(createdElement, HttpStatus.CREATED);

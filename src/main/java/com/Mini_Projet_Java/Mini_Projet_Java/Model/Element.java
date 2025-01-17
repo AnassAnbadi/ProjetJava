@@ -2,6 +2,9 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,14 +18,18 @@ public class Element {
 
     @ManyToOne
     @JoinColumn(name="module_id" )
+    
     private Module module;
     
     @ManyToOne
     @JoinColumn(name="professeur_id")
+    
     private Professeur professeur;
 
     @OneToMany(mappedBy = "element")
+    @JsonIgnore
     private List<NoteElement> notes;
+  
 
 	public Element() {
 		// TODO Auto-generated constructor stub
@@ -36,6 +43,13 @@ public class Element {
 		this.module = module;
 		this.professeur = professeur;
 		this.notes = notes;
+	}
+	public Element(Long idElement, String nomElement, double coefficient, Module module, Professeur professeur) {
+		this.id = idElement;
+		this.nomElement = nomElement;
+		this.coefficient = coefficient;
+		this.module = module;
+		this.professeur = professeur;
 	}
 
 	public Element(String nomElement, double coefficient, Module module, Professeur professeur,

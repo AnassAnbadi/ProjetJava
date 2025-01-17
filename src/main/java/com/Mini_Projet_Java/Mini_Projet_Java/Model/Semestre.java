@@ -5,22 +5,25 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Semestre implements Serializable{
+public class Semestre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
 
     @OneToMany(mappedBy = "semestre")
+    @JsonIgnore
     
     private List<Module> modules;
 
     @OneToMany(mappedBy = "semestre")
+    @JsonIgnore
     
     private List<Etudiant> etudiants;
 

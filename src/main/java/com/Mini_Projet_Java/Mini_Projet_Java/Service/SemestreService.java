@@ -19,8 +19,9 @@ public class SemestreService {
     public List<Semestre> getAllSemestres() {
         return semestreRepository.findAll();
     }
-    public Semestre getSemestreByNom(String nom) {
-        return semestreRepository.findBynom(nom);
+    public Semestre findByNom(String nom) {
+        return semestreRepository.findByNom(nom)
+                .orElseThrow(() -> new RuntimeException("Semestre introuvable avec le nom : " + nom));
     }
     
     // Récupérer un semestre par ID

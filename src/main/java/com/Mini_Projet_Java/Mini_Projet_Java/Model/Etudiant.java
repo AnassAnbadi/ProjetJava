@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
@@ -18,13 +20,16 @@ public class Etudiant{
 
     @ManyToOne
     @JoinColumn(name = "filiere_id")
+    @JsonBackReference
     private Filiere filiere;
 
     @ManyToOne
     @JoinColumn(name = "semestre_id")
+    @JsonBackReference
     private Semestre semestre;
 
     @OneToMany(mappedBy = "etudiant")
+    @JsonIgnore
     private List<NoteElement> notes;
 
     public Etudiant() {
@@ -36,6 +41,13 @@ public class Etudiant{
         this.filiere = filiere;
         this.semestre = semestre;
         this.notes = notes;
+    }
+    public Etudiant(Long codeEtudiant,String nomEtudiant, String prenomEtudiant, Filiere filiere, Semestre semestre) {
+    	this.id = codeEtudiant;
+    	this.nomEtudiant = nomEtudiant;
+        this.prenomEtudiant = prenomEtudiant;
+        this.filiere = filiere;
+        this.semestre = semestre;
     }
     
     public Etudiant(String nomEtudiant, String prenomEtudiant, Filiere filiere, Semestre semestre) {

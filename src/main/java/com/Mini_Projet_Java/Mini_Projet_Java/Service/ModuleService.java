@@ -30,6 +30,7 @@ public class ModuleService {
 
     // Retrieve all Modules
     public List<Module> getAllModules() {
+    	System.out.println(moduleRepository.findAll().get(0).getFiliere().getNomFiliere());
         return moduleRepository.findAll();
     }
 

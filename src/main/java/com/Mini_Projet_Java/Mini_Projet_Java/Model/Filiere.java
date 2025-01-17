@@ -5,23 +5,25 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table
-public class Filiere implements Serializable{
+public class Filiere{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nomFiliere;
 
     @OneToMany(mappedBy = "filiere",fetch = FetchType.LAZY)
+    @JsonIgnore
     
     private List<Etudiant> etudiants;
     
     @OneToMany(mappedBy = "filiere",fetch = FetchType.LAZY)
-    
+   @JsonIgnore
     private List<Module> module;
 
 	public Filiere() {
