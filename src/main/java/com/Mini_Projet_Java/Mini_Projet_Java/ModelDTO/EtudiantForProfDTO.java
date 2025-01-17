@@ -1,6 +1,6 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO;
 
-public class EtudiantDTO {
+public class EtudiantForProfDTO {
     private Long id;
     private String nom;
     private String prenom;
@@ -8,7 +8,7 @@ public class EtudiantDTO {
     private Long semestreId;
 
     // Constructeur
-    public EtudiantDTO(Long id, String nom, String prenom, Long filiereId, Long semestreId) {
+    public EtudiantForProfDTO(Long id, String nom, String prenom, Long filiereId, Long semestreId) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;

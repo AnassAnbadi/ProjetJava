@@ -3,6 +3,7 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
@@ -14,12 +15,12 @@ public class Semestre {
     private Long id;
     private String nom;
 
-    @OneToMany(mappedBy = "semestre")
-    
+
+    @OneToMany(mappedBy = "semestre", fetch = FetchType.LAZY)
     private List<Module> modules;
 
-    @OneToMany(mappedBy = "semestre")
-    
+ 
+    @OneToMany(mappedBy = "semestre", fetch = FetchType.LAZY)
     private List<Etudiant> etudiants;
 
 	public Semestre() {

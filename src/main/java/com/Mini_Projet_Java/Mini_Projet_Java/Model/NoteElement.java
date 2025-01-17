@@ -1,5 +1,9 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,58 +11,51 @@ public class NoteElement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
+    private double noteElement;
+    private int Absent;
+    
+    @ManyToOne()
     @JoinColumn(name="element_id")
     private Element element;
 
 
-    private double noteElement;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name="modalite_id")
+  
     private ModaliteEvaluation modalite;
     
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "etudiant_id")
     private Etudiant etudiant;
 
-    
 
 	public NoteElement() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-
-
-	public NoteElement(Element element, double noteElement, ModaliteEvaluation modalite, Etudiant etudiant) {
-		super();
-		this.element = element;
-		this.noteElement = noteElement;
-		this.modalite = modalite;
-		this.etudiant = etudiant;
-	}
-
-
-
-
-
-
-
-	public NoteElement(Long id, Element element, double noteElement, ModaliteEvaluation modalite, Etudiant etudiant) {
+	public NoteElement(Long id, double noteElement, int absent, Element element,
+			ModaliteEvaluation modalite, Etudiant etudiant) {
 		super();
 		this.id = id;
-		this.element = element;
 		this.noteElement = noteElement;
+		Absent = absent;
+		this.element = element;
 		this.modalite = modalite;
 		this.etudiant = etudiant;
 	}
 
 
-
-
-
+	public NoteElement( double noteElement, int absent, Element element, ModaliteEvaluation modalite,
+			Etudiant etudiant) {
+		super();
+		this.noteElement = noteElement;
+		Absent = absent;
+		this.element = element;
+		this.modalite = modalite;
+		this.etudiant = etudiant;
+	}
 
 
 	public Long getId() {
@@ -66,26 +63,9 @@ public class NoteElement {
 	}
 
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
-	public Element getElement() {
-		return element;
-	}
-
-
-
-	public void setElement(Element element) {
-		this.element = element;
-	}
-
-
-
-
 
 
 	public double getNoteElement() {
@@ -93,11 +73,29 @@ public class NoteElement {
 	}
 
 
-
 	public void setNoteElement(double noteElement) {
 		this.noteElement = noteElement;
 	}
 
+
+	public int getAbsent() {
+		return Absent;
+	}
+
+
+	public void setAbsent(int absent) {
+		Absent = absent;
+	}
+
+
+	public Element getElement() {
+		return element;
+	}
+
+
+	public void setElement(Element element) {
+		this.element = element;
+	}
 
 
 	public ModaliteEvaluation getModalite() {
@@ -105,12 +103,9 @@ public class NoteElement {
 	}
 
 
-
 	public void setModalite(ModaliteEvaluation modalite) {
 		this.modalite = modalite;
 	}
-
-
 
 
 	public Etudiant getEtudiant() {
@@ -118,12 +113,9 @@ public class NoteElement {
 	}
 
 
-
-
 	public void setEtudiant(Etudiant etudiant) {
 		this.etudiant = etudiant;
 	}
+
 	
-	
-    
 }

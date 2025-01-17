@@ -1,7 +1,7 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Controller;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Element;
-import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.ElementDTO;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.ElementForProfDTO;
 import com.Mini_Projet_Java.Mini_Projet_Java.Service.ElementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/elements")
+@RequestMapping("/api/elements")
 public class ElementController {
 
     @Autowired
@@ -26,8 +26,8 @@ public class ElementController {
     
     //Get element by prof id
     @GetMapping("/profElemnet/{id}")
-    public ResponseEntity<List<ElementDTO>> getElementsByProf(@PathVariable Long id) {
-        List<ElementDTO> elements = elementService.getElementsByProf(id);
+    public ResponseEntity<List<ElementForProfDTO>> getElementsByProf(@PathVariable Long id) {
+        List<ElementForProfDTO> elements = elementService.getElementsByProf(id);
         if (elements.isEmpty()) {
             return ResponseEntity.notFound().build(); // Return 404 if no elements are found
         }
@@ -43,7 +43,7 @@ public class ElementController {
     }
 
     // Create a new element
-    @PostMapping("add")
+    @PostMapping("/add")
     public ResponseEntity<Element> createElement(@RequestBody Element element) {
         Element createdElement = elementService.createElement(element);
         return new ResponseEntity<>(createdElement, HttpStatus.CREATED);

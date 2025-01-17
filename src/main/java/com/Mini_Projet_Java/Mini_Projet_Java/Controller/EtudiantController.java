@@ -1,7 +1,8 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Controller;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Etudiant;
-import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.EtudiantDTO;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.EtudiantForProfDTO;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.StudentDTO;
 import com.Mini_Projet_Java.Mini_Projet_Java.Service.EtudiantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/etudiants")
+@RequestMapping("/api/etudiants")
 public class EtudiantController {
 
     @Autowired
     private EtudiantService etudiantService;
 
-    @GetMapping
+    @GetMapping("get")
     public List<Etudiant> getAllEtudiants() {
         return etudiantService.getAllEtudiants();
     }
@@ -44,8 +45,10 @@ public class EtudiantController {
     }
     
     //
-    @GetMapping("/EtudiantListByElement")
-    public List<EtudiantDTO> getEtudiantsByProfesseur_Element(@RequestParam Long professeurId,@RequestParam Long ElementId) {
-        return etudiantService.findEtudiantsByProfesseurIdElementId(professeurId, ElementId);
+   
+    @GetMapping("/getStudentsByElement")
+    public ResponseEntity<List<StudentDTO>> getStudentsByElement(@RequestParam Long elementId,@RequestParam Long modaliteId) {
+        List<StudentDTO> students = etudiantService.getStudentsByElementId(elementId,modaliteId);
+        return ResponseEntity.ok(students);
     }
 }

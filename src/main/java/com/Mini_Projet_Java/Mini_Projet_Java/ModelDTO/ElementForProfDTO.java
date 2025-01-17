@@ -1,6 +1,6 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO;
 
-public class ElementDTO {
+public class ElementForProfDTO {
     private Long id;
     private String nomElement;
     private double coefficient;
@@ -9,7 +9,7 @@ public class ElementDTO {
     private String semestreName;
 
     // Constructors
-    public ElementDTO(Long id, String nomElement, double coefficient, String moduleName, String filiereName, String semestreName) {
+    public ElementForProfDTO(Long id, String nomElement, double coefficient, String moduleName, String filiereName, String semestreName) {
         this.id = id;
         this.nomElement = nomElement;
         this.coefficient = coefficient;

@@ -2,8 +2,11 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
 import java.util.List;
 
-import jakarta.persistence.Column;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,7 +14,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Professeur")
+@Table
 public class Professeur {
 
     @Id
@@ -23,8 +26,8 @@ public class Professeur {
     private String password;
     private String image;
     private String specialite;
-    
-    @OneToMany(mappedBy = "professeur")
+   
+    @OneToMany(mappedBy = "professeur", fetch = FetchType.LAZY)
     private List<Element> elements;
 
 	public Professeur(Long id, String nom, String prenom, String username, String password, String image,

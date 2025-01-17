@@ -1,6 +1,7 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Repository;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Etudiant;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.StudentDTO;
 
 import java.util.List;
 
@@ -11,11 +12,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
-	@Query("SELECT DISTINCT e FROM Etudiant e " +
-		       "JOIN e.filiere f " +
-		       "JOIN f.module m " +
-		       "JOIN m.elements el "+
-		       "WHERE el.id= :elementId and el.professeur.id = :professeurId  ")
-		List<Etudiant> findEtudiantsByProfesseurIdElementId(@Param("professeurId") Long professeurId,@Param("elementId") Long elementId);
-
+	@Query("SELECT DISTINCT NEW com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.StudentDTO(" +
+		    "e.id, e.nomEtudiant, e.prenomEtudiant, " +
+		    "COALESCE(n.noteElement, 0), " +
+		    "COALESCE(n.Absent, false)) " +
+		    "FROM Element el " +
+		    "JOIN el.module m " +
+		    "JOIN m.filiere f " +
+		    "JOIN f.etudiants e " +
+		    "LEFT JOIN el.notes n " +
+		    "ON n.etudiant.id = e.id AND n.modalite.id = :modaliteId " +
+		    "WHERE el.id = :elementId ")
+		List<StudentDTO> findStudentsWithGradesByElementId(
+		    @Param("elementId") Long elementId,
+		    @Param("modaliteId") Long modaliteId);
 }
+
+

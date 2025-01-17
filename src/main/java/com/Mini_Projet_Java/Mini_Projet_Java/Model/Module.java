@@ -2,9 +2,12 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,18 +24,15 @@ public class Module {
 	    private Long id;
 	    private String nomModule;
 
-	    @ManyToOne
-	    @JoinColumn(name="semestre_id") 
-	    
+	    @ManyToOne( fetch = FetchType.LAZY)
+	    @JoinColumn(name="semestre_id")
 	    private Semestre semestre;
 	    
-	    @ManyToOne
-	    @JoinColumn(name="Filiere_id") 
-	    
+	    @ManyToOne( fetch = FetchType.LAZY)
+	    @JoinColumn(name="filiere_id")
 	    private Filiere filiere;
 
-	    @OneToMany(mappedBy = "module")
-	    
+	    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY)
 	    private List<Element> elements;
 	    
 	    

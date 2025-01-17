@@ -1,7 +1,7 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Service;
 
 import com.Mini_Projet_Java.Mini_Projet_Java.Model.Element;
-import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.ElementDTO;
+import com.Mini_Projet_Java.Mini_Projet_Java.ModelDTO.ElementForProfDTO;
 import com.Mini_Projet_Java.Mini_Projet_Java.Repository.ElementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ public class ElementService {
         return false;
     }
 
-	public List<ElementDTO> getElementsByProf(Long id) {
+	public List<ElementForProfDTO> getElementsByProf(Long id ) {
 		return elementRepository.findElementsByProfesseurId(id);
 	}
 }

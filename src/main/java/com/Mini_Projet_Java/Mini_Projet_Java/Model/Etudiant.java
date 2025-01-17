@@ -1,6 +1,12 @@
 package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,15 +18,15 @@ public class Etudiant {
     private String nomEtudiant;
     private String prenomEtudiant;
 
-    @ManyToOne
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "filiere_id")
     private Filiere filiere;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "semestre_id")
     private Semestre semestre;
 
-    @OneToMany(mappedBy = "etudiant")
+    @OneToMany(mappedBy = "etudiant", fetch = FetchType.LAZY)
     private List<NoteElement> notes;
 
     public Etudiant() {

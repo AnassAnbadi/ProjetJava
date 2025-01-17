@@ -3,6 +3,7 @@ package com.Mini_Projet_Java.Mini_Projet_Java.Model;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 
@@ -15,11 +16,9 @@ public class Filiere {
     private String nomFiliere;
 
     @OneToMany(mappedBy = "filiere",fetch = FetchType.LAZY)
-    
     private List<Etudiant> etudiants;
-    
+   
     @OneToMany(mappedBy = "filiere",fetch = FetchType.LAZY)
-    
     private List<Module> module;
 
 	public Filiere() {
